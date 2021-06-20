@@ -2,21 +2,18 @@
 	<div id="app">
 		<Nav />
 		<div class="auth-wrapper">
-			<div class="auth-inner"><Login /></div>
+			<div class="auth-inner"><router-view /></div>
 		</div>
 	</div>
 </template>
 
 <script>
 import Nav from './components/Nav.vue';
-//import Home from './components/Home.vue'
-import Login from './components/Login.vue';
+
 export default {
 	name: 'App',
 	components: {
 		Nav,
-		//Home,
-		Login
 	}
 };
 </script>
