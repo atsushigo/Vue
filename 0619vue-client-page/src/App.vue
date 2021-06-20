@@ -1,16 +1,20 @@
 <template>
 	<div id="app">
 		<Nav />
-		<div class="auth-wrapper"><div class="auth-inner">Hello</div></div>
+		<div class="auth-wrapper">
+			<div class="auth-inner"><Home /></div>
+		</div>
 	</div>
 </template>
 
 <script>
 import Nav from './components/Nav.vue';
+import Home from './components/Home.vue';
 export default {
 	name: 'App',
 	components: {
-		Nav
+		Nav,
+		Home
 	}
 };
 </script>
