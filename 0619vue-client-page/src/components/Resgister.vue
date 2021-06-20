@@ -46,22 +46,16 @@ export default {
 		};
 	},
 	methods: {
-		handleSubmit() {
-			const data = {
+		async handleSubmit() {
+			const response = await axios.post('register', {
 				first_name: this.first_name,
 				last_name: this.last_name,
 				email: this.email,
 				password: this.password,
 				password_confirm: this.password_confirm
-			};
-			axios
-				.post('register', data)
-				.then(res => {
-					console.log(res);
-				})
-				.catch(err => {
-					console.log(err);
-				});
+			});
+			console.log(response)
+			this.$router.push('/login')
 		}
 	}
 };

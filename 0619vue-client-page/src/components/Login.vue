@@ -1,14 +1,14 @@
 <template>
-	<form>
+	<form @submit.prevent="handelSubmit()">
 		<!-- <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" /> -->
 		<h1>Login</h1>
 		<div class="form-floating">
 			<h5>Email</h5>
-			<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" />
+			<input type="email" v-model="email" class="form-control" id="floatingInput" placeholder="name@example.com" />
 		</div>
 		<div class="form-floating">
 			<h5>Password</h5>
-			<input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
+			<input type="password" v-model="password" class="form-control" id="floatingPassword" placeholder="Password" />
 		</div>
 
 		<button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
@@ -17,8 +17,25 @@
 </template>
 
 <script type="text/javascript">
+	import axios from 'axios'
 export default {
-	name: 'Login'
+	name: 'Login',
+	data(){
+		return{
+			email:'',
+			password:'',
+		}
+	},
+	methods:{
+		async handleSubmit(){
+			const response = await axios.post('login',{
+				email:this.email,
+				password:this.password,
+			})	
+			console.log(response)
+			localStorage.setItem('token',response.data.token)
+		}
+	}
 };
 </script>
 
