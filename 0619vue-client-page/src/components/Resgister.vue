@@ -32,6 +32,8 @@
 </template>
 
 <script type="text/javascript">
+import axios from 'axios';
+
 export default {
 	name: 'Register',
 	data() {
@@ -52,7 +54,14 @@ export default {
 				password: this.password,
 				password_confirm: this.password_confirm
 			};
-			alert(data);
+			axios
+				.post('http://localhost:????', data)
+				.then(res => {
+					console.log(res);
+				})
+				.catch(err => {
+					console.log(err);
+				});
 		}
 	}
 };
