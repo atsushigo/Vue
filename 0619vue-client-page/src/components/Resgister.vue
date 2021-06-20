@@ -55,7 +55,7 @@ export default {
 				password_confirm: this.password_confirm
 			};
 			axios
-				.post('http://localhost:????', data)
+				.post('register', data)
 				.then(res => {
 					console.log(res);
 				})
