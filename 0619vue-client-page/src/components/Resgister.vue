@@ -39,7 +39,7 @@ import Error from './Error.vue';
 
 export default {
 	name: 'Register',
-	components: Error,
+	components: { Error },
 	data() {
 		return {
 			first_name: '',
