@@ -1,8 +1,8 @@
 <template>
 	<div id="app">
-		<Nav :user="user" />
+		<Nav />
 		<div class="auth-wrapper">
-			<div class="auth-inner"><router-view :user="user" /></div>
+			<div class="auth-inner"><router-view /></div>
 		</div>
 	</div>
 </template>
@@ -10,20 +10,17 @@
 <script>
 import Nav from './components/Nav.vue';
 import axios from 'axios';
+
 export default {
 	name: 'App',
 	components: {
 		Nav,
 	},
-	data() {
-		return {
-			user: "test123"
-		};
-	},
 	async created() {
-		this.user = response.data.user;
 		const response = await axios.get('user');
 		console.log(response);
+		//這邊主要要注意 1.後端回傳的是什麼 2.我要傳什麼到vuex的state裡面 (response.data.user.username)
+		this.store.$dispatch('user',response.data.user.username)
 	}
 };
 </script>

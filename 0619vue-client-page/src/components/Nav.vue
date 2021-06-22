@@ -19,14 +19,18 @@
 </template>
 
 <script>
+	import {mapGetters} from 'vuex'
 	export default{
 		name:'Nav',
-		props:['user'],
 		methods:{
 			handleClick(){
 				localStorage.removeItem('token');
+				this.$store.dispatch('user',null)
 				this.$router.push('/')
 			}
+		},
+		computed:{
+			...mapGetters(['users'])
 		}
 	}
 	

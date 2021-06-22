@@ -17,23 +17,25 @@
 </template>
 
 <script type="text/javascript">
-	import axios from 'axios'
+import axios from 'axios';
 export default {
 	name: 'Login',
-	data(){
-		return{
-			email:'',
-			password:'',
-		}
+	data() {
+		return {
+			email: '',
+			password: ''
+		};
 	},
-	methods:{
-		async handleSubmit(){
-			const response = await axios.post('login',{
-				email:this.email,
-				password:this.password,
-			})	
-			console.log(response)
-			localStorage.setItem('token',response.data.token)
+	methods: {
+		async handleSubmit() {
+			const response = await axios.post('login', {
+				email: this.email,
+				password: this.password
+			});
+			console.log(response);
+			localStorage.setItem('token', response.data.token);
+			//接到後端傳回的data後傳給共用管理狀態
+			this.$store.dispatch('user',response.data.user)
 			this.$router.push('/');
 		}
 	}
@@ -58,5 +60,4 @@ export default {
 button {
 	margin-top: 10px;
 }
-
 </style>
