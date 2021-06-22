@@ -1,5 +1,7 @@
 <template>
 	<form @submit.prevent>
+		<Error v-if="error" :error="error" />
+
 		<h3>sign up</h3>
 
 		<div class="form-group">
@@ -33,29 +35,37 @@
 
 <script type="text/javascript">
 import axios from 'axios';
+import Error from './Error.vue';
 
 export default {
 	name: 'Register',
+	components: Error,
 	data() {
 		return {
 			first_name: '',
 			last_name: '',
 			email: '',
 			password: '',
-			password_confirm: ''
+			password_confirm: '',
+			error: ''
 		};
 	},
 	methods: {
 		async handleSubmit() {
-			const response = await axios.post('register', {
-				first_name: this.first_name,
-				last_name: this.last_name,
-				email: this.email,
-				password: this.password,
-				password_confirm: this.password_confirm
-			});
-			console.log(response)
-			this.$router.push('/login')
+			try {
+				const response = await axios.post('register', {
+					first_name: this.first_name,
+					last_name: this.last_name,
+					email: this.email,
+					password: this.password,
+					password_confirm: this.password_confirm
+				});
+				console.log(response);
+				this.$router.push('/login');
+			} catch (e) {
+				//給UI顯示錯誤訊息
+				this.error = '輸入框非法錯誤';
+			}
 		}
 	}
 };

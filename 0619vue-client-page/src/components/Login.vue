@@ -1,7 +1,7 @@
 <template>
 	<form @submit.prevent>
 		<!-- <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" /> -->
-		<Error :error="error" />
+		<Error v-if="error" :error="error" />
 
 		<h1>Login</h1>
 		<div class="form-floating">
