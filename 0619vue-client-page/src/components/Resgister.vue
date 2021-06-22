@@ -1,7 +1,7 @@
 <template>
 	<form @submit.prevent>
 		<Error v-if="error" :error="error" />
-
+		<Success v-if="message" :message="message" />
 		<h3>sign up</h3>
 
 		<div class="form-group">
@@ -36,10 +36,10 @@
 <script type="text/javascript">
 import axios from 'axios';
 import Error from './Error.vue';
-
+import Success from './Success.vue';
 export default {
 	name: 'Register',
-	components: { Error },
+	components: { Error, Success },
 	data() {
 		return {
 			first_name: '',
@@ -47,7 +47,8 @@ export default {
 			email: '',
 			password: '',
 			password_confirm: '',
-			error: ''
+			error: '',
+			message:''
 		};
 	},
 	methods: {
@@ -60,6 +61,7 @@ export default {
 					password: this.password,
 					password_confirm: this.password_confirm
 				});
+				this.message = "註冊成功",
 				console.log(response);
 				this.$router.push('/login');
 			} catch (e) {

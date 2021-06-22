@@ -1,6 +1,7 @@
 <template>
 	<form @submit.prevent>
-		<Error :error="error" />
+		<Error v-if="error" :error="error" />
+		<Success v-if="message" :message="message" />
 		<h3>Reset Password</h3>
 
 		<div class="form-group">
@@ -20,16 +21,19 @@
 <script type="text/javascript">
 import axios from 'axios';
 import Error from './Error.vue';
+import Success from './Success.vue';
 export default {
 	name: 'Reset',
 	components: {
-		Error
+		Error,
+		Success
 	},
 	data() {
 		return {
 			password: null,
 			passwordConfirm: null,
-			error: ''
+			error: '',
+			message: '',
 		};
 	},
 	methods: {
@@ -39,6 +43,7 @@ export default {
 					password: this.password,
 					token: this.$route.params.token
 				})
+				this.message = "重新設置成功",
 				console.log(response)
 				this.$router.push('/login')
 			} catch (e) {

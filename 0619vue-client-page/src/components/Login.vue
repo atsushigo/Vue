@@ -2,7 +2,7 @@
 	<form @submit.prevent>
 		<!-- <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" /> -->
 		<Error v-if="error" :error="error" />
-
+		<Success v-if="message" :message="message" />
 		<h1>Login</h1>
 		<div class="form-floating">
 			<h5>Email</h5>
@@ -23,16 +23,19 @@
 <script type="text/javascript">
 import axios from 'axios';
 import Error from './Error.vue';
+import Success from './Success.vue'
 export default {
 	name: 'Login',
 	components: {
-		Error
+		Error,
+		Success
 	},
 	data() {
 		return {
 			email: '',
 			password: '',
-			error: ''
+			error: '',
+			message:'',
 		};
 	},
 	methods: {
@@ -43,6 +46,7 @@ export default {
 					password: this.password
 				});
 				console.log(response);
+				this.message="登入成功",
 				localStorage.setItem('token', response.data.token);
 				//接到後端傳回的data後傳給共用管理狀態
 				this.$store.dispatch('user', response.data.user);

@@ -1,7 +1,7 @@
 <template>
 	<form @submit.prevent>
 		<Error :error="error" />
-		<div v-if="message" class="alert alert-success" role="alert">{{ message }}</div>
+		<Success v-if="message" :message="message" />
 		<h3>Forgot Password</h3>
 
 		<div class="form-group">
@@ -16,10 +16,12 @@
 <script>
 import axios from 'axios';
 import Error from './Error.vue';
+import Success from './Success.vue';
 export default {
 	name: 'Forgot',
 	components: {
-		Error
+		Error,
+		Success
 	},
 	data() {
 		return {
