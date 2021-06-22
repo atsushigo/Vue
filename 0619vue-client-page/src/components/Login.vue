@@ -1,11 +1,8 @@
 <template>
 	<form @submit.prevent>
 		<!-- <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" /> -->
-		
-		<div v-if="error" class="alert alert-danger" role="alert">
-			{{error}}
-		</div>
-		
+		<Error :error="error" />
+
 		<h1>Login</h1>
 		<div class="form-floating">
 			<h5>Email</h5>
@@ -25,13 +22,17 @@
 
 <script type="text/javascript">
 import axios from 'axios';
+import Error from './Error.vue';
 export default {
 	name: 'Login',
+	components: {
+		Error
+	},
 	data() {
 		return {
 			email: '',
 			password: '',
-			error:'',
+			error: ''
 		};
 	},
 	methods: {
@@ -48,7 +49,7 @@ export default {
 				this.$router.push('/');
 			} catch (e) {
 				//給UI顯示錯誤訊息
-				this.error = "帳號或密碼錯誤"
+				this.error = '帳號或密碼錯誤';
 			}
 		}
 	}
