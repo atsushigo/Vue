@@ -1,6 +1,11 @@
 <template>
-	<form @submit.prevent="handelSubmit()">
+	<form @submit.prevent>
 		<!-- <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" /> -->
+		
+		<div v-if="error" class="alert alert-danger" role="alert">
+			{{error}}
+		</div>
+		
 		<h1>Login</h1>
 		<div class="form-floating">
 			<h5>Email</h5>
@@ -11,11 +16,9 @@
 			<input type="password" v-model="password" class="form-control" id="floatingPassword" placeholder="Password" />
 		</div>
 
-		<button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
-		<p class="forgot-password text-right">
-			<router-link to="forgot">Forgot password?</router-link>
-		</p>
-		
+		<button class="w-100 btn btn-lg btn-primary" @click="handleSubmit()">Login</button>
+		<p class="forgot-password text-right"><router-link to="forgot">Forgot password?</router-link></p>
+
 		<p class="mt-5 mb-3 text-muted">&copy; 2021</p>
 	</form>
 </template>
@@ -27,20 +30,26 @@ export default {
 	data() {
 		return {
 			email: '',
-			password: ''
+			password: '',
+			error:'',
 		};
 	},
 	methods: {
 		async handleSubmit() {
-			const response = await axios.post('login', {
-				email: this.email,
-				password: this.password
-			});
-			console.log(response);
-			localStorage.setItem('token', response.data.token);
-			//接到後端傳回的data後傳給共用管理狀態
-			this.$store.dispatch('user',response.data.user)
-			this.$router.push('/');
+			try {
+				const response = await axios.post('login', {
+					email: this.email,
+					password: this.password
+				});
+				console.log(response);
+				localStorage.setItem('token', response.data.token);
+				//接到後端傳回的data後傳給共用管理狀態
+				this.$store.dispatch('user', response.data.user);
+				this.$router.push('/');
+			} catch (e) {
+				//給UI顯示錯誤訊息
+				this.error = "帳號或密碼錯誤"
+			}
 		}
 	}
 };
