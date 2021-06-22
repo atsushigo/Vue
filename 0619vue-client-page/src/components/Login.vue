@@ -12,6 +12,10 @@
 		</div>
 
 		<button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+		<p class="forgot-password text-right">
+			<router-link to="forgot">Forgot password?</router-link>
+		</p>
+		
 		<p class="mt-5 mb-3 text-muted">&copy; 2021</p>
 	</form>
 </template>
