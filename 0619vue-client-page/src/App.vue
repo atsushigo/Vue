@@ -1,19 +1,29 @@
 <template>
 	<div id="app">
-		<Nav />
+		<Nav :user="user" />
 		<div class="auth-wrapper">
-			<div class="auth-inner"><router-view /></div>
+			<div class="auth-inner"><router-view :user="user" /></div>
 		</div>
 	</div>
 </template>
 
 <script>
 import Nav from './components/Nav.vue';
-
+import axios from 'axios';
 export default {
 	name: 'App',
 	components: {
 		Nav,
+	},
+	data() {
+		return {
+			user: "test123"
+		};
+	},
+	async created() {
+		this.user = response.data.user;
+		const response = await axios.get('user');
+		console.log(response);
 	}
 };
 </script>

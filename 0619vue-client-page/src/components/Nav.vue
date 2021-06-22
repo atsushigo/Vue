@@ -4,9 +4,13 @@
 			<div class="container">
 				<router-link to="/" class="navbar-brand">Home</router-link>
 				<div class="collapse navbar-collapse">
-					<ul class="navbar-nav ml-auto">
+					<ul v-if="!user" class="navbar-nav ml-auto">
 						<li class="nav-item"><router-link to="/login" class="nav-link">Login</router-link></li>
 						<li class="nav-item"><router-link to="/register" class="nav-link">Sign up</router-link></li>
+					</ul>
+					
+					<ul v-if="user" class="navbar-nav ml-auto">
+						<li class="nav-item"><router-link to="/" @click="handleClick()" class="nav-link">Logout</router-link></li>
 					</ul>
 				</div>
 			</div>
@@ -16,7 +20,14 @@
 
 <script>
 	export default{
-		name:'Nav'
+		name:'Nav',
+		props:['user'],
+		methods:{
+			handleClick(){
+				localStorage.removeItem('token');
+				this.$router.push('/')
+			}
+		}
 	}
 	
 </script>
