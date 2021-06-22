@@ -1,5 +1,5 @@
 <template>
-	<form @submit.prevent="handleSubmit()">
+	<form @submit.prevent>
 		<h3>sign up</h3>
 
 		<div class="form-group">
@@ -27,7 +27,7 @@
 			<input type="password" class="form-control" v-model="password_confirm" placeholder="Confirm Password" />
 		</div>
 
-		<button class="btn btn-primary btn-block">Sign up</button>
+		<button class="btn btn-primary btn-block" @click="handleSubmit()">Sign up</button>
 	</form>
 </template>
 
