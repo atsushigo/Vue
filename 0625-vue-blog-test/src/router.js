@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import ShowBlog from './components/ShowBlog.vue'
 import AddBlog from './components/AddBlog.vue'
+import SingleBlog from './components/SingleBlog.vue'
 
 Vue.use(Router)
 
@@ -14,6 +15,10 @@ export default new Router({
 		{
 			path: "/add",
 			component: AddBlog
+		},
+		{
+			path:"/blog/:id",
+			component: SingleBlog
 		}
 	]
 })

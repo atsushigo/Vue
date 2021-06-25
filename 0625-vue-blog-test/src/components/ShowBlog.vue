@@ -3,7 +3,9 @@
 		<h1>博客總覽</h1>
 		<input type="text" placeholder="搜索" v-model="search">
 		<div v-for="(blog, index) in blogFilter" :key="index" class="single-blog">
-			<h2>{{ blog.title | to-uppercase }}</h2>
+			<!-- 動態路由的話要:to -->
+			<router-link :to="'/blog/'+blog.id">
+			<h2>{{ blog.title | to-uppercase }}</h2></router-link>
 			<article>{{ blog.body | cut }}</article>
 		</div>
 	</div>
@@ -59,5 +61,17 @@ export default {
 		margin: 20px 0;
 		box-sizing: border-box;
 		background: #eee;
+		border: 1px dotted #aaa;
+	}
+	
+	#show-blog>a{
+		color: #4444;
+		text-decoration: none;
+	}
+	
+	input[type=text]{
+		padding: 8px;
+		width: 100%;
+		box-sizing: border-box;
 	}
 </style>
