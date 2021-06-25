@@ -1,9 +1,10 @@
 <template>
 	<div id="show-blog">
 		<h1>博客總覽</h1>
-		<div v-for="(blog, index) in blogs" :key="index" class="single-blog">
-			<h2>{{ blog.title }}</h2>
-			<article>{{ blog.body }}</article>
+		<input type="text" placeholder="搜索" v-model="search">
+		<div v-for="(blog, index) in blogFilter" :key="index" class="single-blog">
+			<h2>{{ blog.title | to-uppercase }}</h2>
+			<article>{{ blog.body | cut }}</article>
 		</div>
 	</div>
 </template>
@@ -14,7 +15,8 @@ export default {
 	name: 'ShowBlog',
 	data() {
 		return {
-			blogs: []
+			blogs: [],
+			search:""
 		};
 	},
 	created() {
@@ -28,7 +30,21 @@ export default {
 			.catch(err => {
 				console.log(err);
 			});
-	}
+	},
+	computed:{
+		//for迴圈從這裡撈已經過濾的資料
+		blogFilter(){
+			return this.blogs.filter(blog=>{
+				return blog.title.toLowerCase().match(this.search)
+			})
+		}
+	},
+	// filters:{
+	// 	//局部註冊自訂方法
+	// 	"to-uppercase":value=>{
+	// 		return value.toUpperCase()
+	// 	}
+	// }
 };
 </script>
 
