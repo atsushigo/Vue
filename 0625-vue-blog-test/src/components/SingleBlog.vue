@@ -2,6 +2,19 @@
 	<div id="single-blog">
 		<h1>{{ blog.title }}</h1>
 		<article>{{ blog.body }}</article>
+		<p>作者ID:{{ blog.id }}</p>
+		<p>分類:第{{ blog.userId }}類</p>
+		<ul>
+			<!-- <li v-for="(category,index) in blog.userId" :key="index">
+				{{blog.category}}
+			</li> -->
+		</ul>
+		<button @click="deleteblog()">刪除</button>
+		<!-- 兩種寫法 -->
+		<!-- button @click="$router.push('/blog/edit')" 或 
+		router-link to="/blog/edit" tag="button" -->
+		<!-- 要注意不要跟其他頁路由衝突到 -->
+		<router-link :to="'/edit/'+id" tag="button">編輯</router-link>
 	</div>
 </template>
 
@@ -27,16 +40,24 @@ export default {
 			.catch(err => {
 				console.log(err);
 			});
+	},
+	methods: {
+		deleteblog() {
+			axios
+				.get('https://jsonplaceholder.typicode.com/posts/delete/' + this.id)
+				.then(console.log('刪除成功'))
+				.catch(console.log('刪除失敗'));
+		}
 	}
 };
 </script>
 
 <style type="text/css" scoped>
-	#single-blog{
-		max-width: 960px;
-		margin: 0 auto;
-		padding: 20px;
-		background-color: #eee;
-		border:1px dotted #aaa;
-	}
+#single-blog {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #eee;
+	border: 1px dotted #aaa;
+}
 </style>
