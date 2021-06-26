@@ -5,7 +5,7 @@
 		<div v-for="(blog, index) in blogFilter" :key="index" class="single-blog">
 			<!-- 動態路由的話要:to -->
 			<router-link :to="'/blog/'+blog.id">
-			<h2>{{ blog.title | to-uppercase }}</h2></router-link>
+			<h2 v-rainbow>{{ blog.title | to-uppercase }}</h2></router-link>
 			<article>{{ blog.body | cut }}</article>
 		</div>
 	</div>
