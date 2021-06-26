@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import axios from 'axios'
+import axios from './myaxios.js'
 import router from './router.js'
 
 Vue.use(axios)

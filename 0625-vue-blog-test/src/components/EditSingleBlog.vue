@@ -49,7 +49,8 @@
 </template>
 
 <script type="text/javascript">
-import axios from 'axios';
+// import axios from 'axios';
+import axios from '../myaxios.js'
 export default {
 	name: 'AddBlog',
 	data() {
@@ -70,7 +71,7 @@ export default {
 	methods: {
 		postData() {
 			axios
-				.put('https://jsonplaceholder.typicode.com/posts', {
+				.put('/posts', {
 					blog:this.blog
 				})
 				.then(res => {
@@ -81,7 +82,7 @@ export default {
 		}
 	},
 	created() {
-		axios.get('https://jsonplaceholder.typicode.com/posts/'+this.id).then(res=>{
+		axios.get('/posts/'+this.id).then(res=>{
 			// this.blog.title = res.data.title;this.blog.content = res.data.content;
 			this.blog = res.data
 		}).catch()

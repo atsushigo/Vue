@@ -45,7 +45,7 @@
 </template>
 
 <script type="text/javascript">
-import axios from 'axios';
+import axios from '../myaxios.js';
 export default {
 	name: 'AddBlog',
 	data() {
@@ -63,7 +63,7 @@ export default {
 	methods: {
 		postData() {
 			axios
-				.post('https://jsonplaceholder.typicode.com/posts', {
+				.post('/posts', {
 					title: this.blog.title,
 					body: this.blog.content,
 					userId: 1

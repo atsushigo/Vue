@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '../myaxios.js';
 export default {
 	name: 'SingleBlog',
 	data() {
@@ -32,7 +32,7 @@ export default {
 	},
 	created() {
 		axios
-			.get('https://jsonplaceholder.typicode.com/posts' + '/' + this.id)
+			.get('/posts' + '/' + this.id)
 			.then(res => {
 				this.blog = res.data;
 				console.log(res);
@@ -44,7 +44,7 @@ export default {
 	methods: {
 		deleteblog() {
 			axios
-				.get('https://jsonplaceholder.typicode.com/posts/delete/' + this.id)
+				.get('/posts/delete/' + this.id)
 				.then(console.log('刪除成功'))
 				.catch(console.log('刪除失敗'));
 		}

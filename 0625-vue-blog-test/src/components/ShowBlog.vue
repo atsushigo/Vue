@@ -12,7 +12,7 @@
 </template>
 
 <script type="text/javascript">
-import axios from 'axios';
+import axios from '../myaxios.js';
 export default {
 	name: 'ShowBlog',
 	data() {
@@ -24,7 +24,7 @@ export default {
 	created() {
 		// url換成本地放靜態資料夾才可以-> "./../static/posts.json" 
 		axios
-			.get('https://jsonplaceholder.typicode.com/posts')
+			.get('/posts')
 			.then(res => {
 				//slice(1,3)寫法瀏覽器沒支持 所以換filter()
 				this.blogs = res.data.filter(obj => obj.id < 10 && obj.id > 0);
