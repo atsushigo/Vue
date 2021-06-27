@@ -67,6 +67,8 @@ export default {
 				API.createProduct(this.product)
 					.then(res => {
 						console.log(res);
+						//接回傳的對象拿id跳轉頁面
+						this.$router.push("'/product/'+res.id");
 					})
 					.catch(err => {
 						console.log(err);
