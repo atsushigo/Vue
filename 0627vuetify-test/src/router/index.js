@@ -4,6 +4,7 @@ import Landing from '../views/Landing.vue'
 import Product from '../views/Product.vue'
 import SingleProduct from '../views/SingleProduct.vue'
 import Create from '../views/Create.vue'
+import Edit from '../views/Edit.vue'
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,11 @@ const routes = [{
 		path: '/product/:id',
 		name: 'SingleProduct',
 		component: SingleProduct
+	},
+	{
+		path:'/product/:id/edit',
+		name:'Edit',
+		component: Edit
 	},
 ]
 

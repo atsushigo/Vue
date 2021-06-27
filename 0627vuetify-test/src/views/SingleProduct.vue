@@ -11,7 +11,7 @@
 						<div>{{ product.description }}</div>
 					</v-card-text>
 
-					<v-card-actions><v-btn :to="'/edit/'+product.id" color="orange" text>Edit</v-btn></v-card-actions>
+					<v-card-actions><v-btn :to="'/product/'+product.id+'/edit'" color="orange" text>Edit</v-btn></v-card-actions>
 				</v-card>
 			</v-flex>
 		</v-layout>
