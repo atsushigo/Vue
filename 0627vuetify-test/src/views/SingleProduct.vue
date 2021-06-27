@@ -11,7 +11,10 @@
 						<div>{{ product.description }}</div>
 					</v-card-text>
 
-					<v-card-actions><v-btn :to="'/product/'+product.id+'/edit'" color="orange" text>Edit</v-btn></v-card-actions>
+					<v-card-actions>
+						<v-btn :to="'/product/'+product.id+'/edit'" color="orange" text>Edit</v-btn>
+						<v-btn @click="deleteProduct()" color="error" text>DELETE</v-btn>
+						</v-card-actions>
 				</v-card>
 			</v-flex>
 		</v-layout>
@@ -39,7 +42,18 @@ export default {
 			API.getProduct().then((product)=>{
 				this.product = product
 			})
-		}
+		},
+		deleteProduct(id){
+			API.deleteProduct(id).then(()=>{
+				this.$router.push({
+					name:"Product"
+				})
+			}).catch(()=>{
+				this.$router.push({
+					name:"Product"
+				})
+			})
+		},
 	}
 };
 </script>
