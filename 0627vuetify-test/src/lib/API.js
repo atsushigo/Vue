@@ -6,5 +6,8 @@ export default {
 	},
 	getSingleProduct() {
 		return fetch(API_URL).get('${API_URL}/${this.$route.params}')
+	},
+	createProduct(){
+		return fetch(API_URL).get(API_URL)
 	}
 }
