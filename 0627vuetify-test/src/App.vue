@@ -6,6 +6,10 @@
 					<v-list-item-action><v-icon>mdi-format-list-checks</v-icon></v-list-item-action>
 					<v-list-item-content><v-list-item-title>商品</v-list-item-title></v-list-item-content>
 				</v-list-item>
+				<v-list-item link to="/product/create">
+					<v-list-item-action><v-icon>mdi-format-list-checks</v-icon></v-list-item-action>
+					<v-list-item-content><v-list-item-title>建立商品</v-list-item-title></v-list-item-content>
+				</v-list-item>
 			</v-list>
 		</v-navigation-drawer>
 

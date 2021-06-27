@@ -13,7 +13,7 @@
 					</v-card-text>
 
 					<v-card-actions>
-						<v-btn color="orange" text>View</v-btn>
+						<v-btn color="orange" text :to="'/product/'+product.id">View</v-btn>
 					</v-card-actions>
 				</v-card>
 			</v-flex>
