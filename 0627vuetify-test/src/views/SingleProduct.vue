@@ -1,17 +1,17 @@
 <template>
 	<div>
 		<v-layout row wrap>
-			<v-flex xs4 v-for="(product, index) in products" :key="index">
+			<v-flex xs12>
 				<v-card class="mx-auto">
 					<v-img class="white--text align-end" height="200px" :src="product.img"><v-card-title>Top 10 Australian beaches</v-card-title></v-img>
-
+	
 					<v-card-subtitle class="pb-0">{{ product.title }}</v-card-subtitle>
-
+	
 					<v-card-text class="text--primary">
-
+	
 						<div>{{ product.description }}</div>
 					</v-card-text>
-
+	
 					<v-card-actions>
 						<v-btn color="orange" text>View</v-btn>
 					</v-card-actions>
@@ -22,23 +22,16 @@
 </template>
 
 <script type="text/javascript">
-import API from '@/lib/API';
-export default {
-	name: 'Product',
-	data() {
-		return {
-			products: [1, 2, 3, 4]
-		};
-	},
-	mounted() {
-		this.load();
-	},
-	methods: {
-		load() {
-			API.getProducts().then(products => (this.products = products));
+	export default {
+		name:"SingleProduct",
+		data() {
+			return{
+				product:{},
+			}
 		}
 	}
-};
 </script>
 
-<style type="text/css"></style>
+<style type="text/css">
+	
+</style>
