@@ -10,5 +10,10 @@ app.use(cors())
 app.get("/", function(req, res) {
 	res.send("get ok")
 });
+app.post("/login",(req,res)=>{
+	res.json({
+		message:"login OK"
+	})
+})
 
 app.listen(3010);
