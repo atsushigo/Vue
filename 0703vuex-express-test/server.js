@@ -11,6 +11,11 @@ app.use(cors())
 app.get("/", function(req, res) {
 	res.send("get ok")
 });
+app.get("/hi",(req,res)=>{
+	res.json({
+		message:"帶token的HI OK"
+	})
+})
 app.post("/login",(req,res)=>{
 	const USERNAME = "sam"
 	const PASSWORD = "12345"
