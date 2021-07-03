@@ -17,5 +17,11 @@ export default new Vuex.Store({
 		}
 	},
 	actions: {},
+	getters:{
+		isLoggedIn(state){
+			//根據有無token返回true or false 
+			return !!state.token
+		}
+	},
 	modules: {}
 })

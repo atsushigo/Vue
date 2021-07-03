@@ -38,6 +38,7 @@ export default {
 			console.log(user,token)
 			this.setUser(user)
 			this.setToken(token)
+			this.$router.push("/welcome")
 		}
 	}
 };
