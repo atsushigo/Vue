@@ -12,9 +12,21 @@ app.get("/", function(req, res) {
 	res.send("get ok")
 });
 app.get("/hi",(req,res)=>{
-	res.json({
-		message:"帶token的HI OK"
-	})
+	// console.log(req.headers)
+	const {authorization} = req.headers
+	const[, token] = authorization.split(" ")
+	// console.log(token)
+	const tokenVerify = jwt.verify(token,"我是加密字串")
+	if(tokenVerify){
+		res.json({
+			message:"帶token的HI OK"
+		})
+	}else{
+		res.status(403).json({
+			message:"error"
+		})
+	}
+	
 })
 app.post("/login",(req,res)=>{
 	const USERNAME = "sam"
