@@ -11,9 +11,21 @@ app.get("/", function(req, res) {
 	res.send("get ok")
 });
 app.post("/login",(req,res)=>{
-	res.json({
-		message:"login OK"
-	})
+	const USERNAME = "sam"
+	const PASSWORD = "12345"
+	
+	const {username,password} = req.body.user
+	
+	if(username === USERNAME && password === PASSWORD){
+		res.json({
+			message:"login OK"
+		})
+	}else{
+		res.status(403).json({
+			message:"Login資料不正確"
+		})
+	}
+	
 })
 
 app.listen(3010);
