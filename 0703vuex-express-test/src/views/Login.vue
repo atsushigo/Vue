@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import {mapMutations} from "vuex"
 export default {
 	data: () => {
 		return {
@@ -22,8 +23,9 @@ export default {
 		};
 	},
 	methods: {
-		login() {
-			fetch('http://localhost:3010/login', {
+		...mapMutations(["setUser","setToken"]),
+		async login() {
+			const response = await fetch('http://localhost:3010/login', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -32,6 +34,10 @@ export default {
 					user:this.user
 				})
 			});
+			const {user,token} = await response.json()
+			console.log(user,token)
+			this.setUser(user)
+			this.setToken(token)
 		}
 	}
 };
