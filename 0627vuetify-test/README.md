@@ -1,5 +1,6 @@
 # 0627vuetify-test
 
+## 練習拆架構 細節沒做
 ## Project setup
 ```
 npm install
