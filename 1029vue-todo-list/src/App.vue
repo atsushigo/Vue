@@ -3,13 +3,13 @@
 		<header>todoList</header>
 		<section class="todo-input">
 			<input type="text" placeholder="請輸入需要添加的事項"  v-model="inputText" @change="print()"/>
-			<button>添加</button>
+			<button @click="addItem()">添加</button>
 		</section>
 		
 		<section>
 			<ul class="todo-list">
 				<li class="todo-item" v-for="(item,index) in list" :key="index">
-					<span>{{index+1}}</span> <p>{{item}}</p> <button>完成</button>
+					<span>{{index+1}}</span> <p>{{item}}</p> <button @click="removeItem(index)">完成</button>
 				</li>
 				<!-- <li class="todo-item">
 					<span>2.</span> <p>吃飯</p> <button>完成</button>
@@ -18,6 +18,9 @@
 					<span>3.</span> <p>讀書</p> <button>完成</button>
 				</li> -->
 			</ul>
+			<div class="todo-nodata" v-show="!this.list.length">
+				還沒有todo-數據，請添加
+			</div>
 		</section>
 	</div>
 </template>
@@ -32,7 +35,13 @@ export default {
 		}
 	},
 	methods:{
-		print(){console.log(this.inputText)}
+		print(){console.log(this.inputText)},
+		addItem(){
+			this.list.push(this.inputText)
+		},
+		removeItem(num){
+			this.list.splice(num,1)
+		}
 	}
 };
 </script>
@@ -86,6 +95,12 @@ header{
 	border: none;
 	border-raius:6px;
 	color: #FFFFFF;
+}
+.todo-nodata{
+	font-size: 28px;
+	line-height: 80px;
+	text-align: center;
+	color: aqua;
 }
 ul{
 	marign:0;
