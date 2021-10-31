@@ -1,43 +1,28 @@
 <template>
 	<div id="app">
 		<header>todoList</header>
-		<section class="todo-input">
-			<input type="text" placeholder="請輸入需要添加的事項"  v-model="inputText" @change="print()"/>
-			<button @click="addItem()">添加</button>
-		</section>
-		
-		<section>
-			<ul class="todo-list">
-				<li class="todo-item" v-for="(item,index) in list" :key="index">
-					<span>{{index+1}}</span> <p>{{item}}</p> <button @click="removeItem(index)">完成</button>
-				</li>
-				<!-- <li class="todo-item">
-					<span>2.</span> <p>吃飯</p> <button>完成</button>
-				</li>
-				<li class="todo-item">
-					<span>3.</span> <p>讀書</p> <button>完成</button>
-				</li> -->
-			</ul>
-			<div class="todo-nodata" v-show="!this.list.length">
-				還沒有todo-數據，請添加
-			</div>
-		</section>
+		<TodoInput @addItem="addChildrenItem"/>
+		<!-- 要注意不能用addChildrenItem() 要用名稱addChildrenItem -->
+		<TodoList :childrenList="list"/>
 	</div>
 </template>
 
 <script>
-export default {
+	import TodoInput from "./components/input.vue"
+	import TodoList from "./components/list.vue"
+    export default {
 	name: 'App',
+	components:{
+		TodoInput,TodoList
+	},
 	data(){
 		return{
 			list:["打遊戲","吃飯","讀書"],
-			inputText:""
 		}
 	},
 	methods:{
-		print(){console.log(this.inputText)},
-		addItem(){
-			this.list.push(this.inputText)
+		addChildrenItem(val){
+			this.list.push(val)
 		},
 		removeItem(num){
 			this.list.splice(num,1)
