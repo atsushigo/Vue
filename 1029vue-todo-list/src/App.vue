@@ -3,7 +3,7 @@
 		<header>todoList</header>
 		<TodoInput @addItem="addChildrenItem"/>
 		<!-- 要注意不能用addChildrenItem() 要用名稱addChildrenItem -->
-		<TodoList :childrenList="list"/>
+		<TodoList :childrenList="list" @removeItem="removeItem"/>
 	</div>
 </template>
 
