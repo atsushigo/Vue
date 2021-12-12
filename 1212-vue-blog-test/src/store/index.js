@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		token: "",
-		userInfo: {}
+		userInfo: JSON.parse(sessionStorage.getItem("userInfo")),
 	},
 	mutations: {
 		//用token去跟後端拿userInfo
@@ -27,6 +27,12 @@ export default new Vuex.Store({
 				state.userInfo = {},
 				localStorage.setItem("token", "")
 			sessionStorage.setItem("userInfo", "")
+		}
+	},
+	getters:{
+		//get方法獲取用戶訊息
+		getUser:state=>{
+			return state.userInfo
 		}
 	},
 	actions: {

@@ -46,11 +46,22 @@
 	        this.$refs[formName].validate((valid) => {
 	          if (valid) {
 	            alert('submit!');
+				//防止axios指向和vue指向混淆 要用vuex的this
+				const _this = this
 				this.$axios.post("http://localhost:8081/login",this.ruleForm).then(res=>{
 					console.log("請求成功",res)
 					const jwt = res.headers['authorization']
 					const userInfo = res.data.data
 					console.log(userInfo)
+					
+					//把數據全局共享出去到vuex
+					_this.$store.commit("SET_TOKEN",jwt)
+					_this.$store.commit("SET_USERINFO",userInfo)
+					
+					//獲取用戶訊息
+					console.log(_this.$store.getters.getUser)
+					//跳轉到詳情頁面
+					_this.$router.push("/blogs")
 				})
 	          } else {
 	            console.log('error submit!!');
