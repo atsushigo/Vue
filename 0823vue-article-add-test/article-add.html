@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+		<title>文章管理</title>
+	</head>
+	<body>
+		<div id="app">
+
+			<div class="container-fluid">
+				<div class="card border-0">
+					<div class="card-header bg-white">
+						<h3 class="card-title">文章添加</h3>
+					</div>
+					<div class="card-body">
+						<form action="">
+							<div class="form-group row">
+								<label for="title" class="col-form-label text-right col-2">標題:</label>
+								<input type="text" class="form-control col-9" id="title" v-model.trim="title">
+							</div>
+							<div class="form-group row">
+								<label for="category" class="col-form-label text-right col-2">種類:</label>
+								<select type="text" class="form-control col-9" id="category" v-model="category">
+									<option value="默認">默認</option>
+									<option value="種類1">種類1</option>
+									<option value="種類2">種類2</option>
+									<option value="種類3">種類3</option>
+								</select>
+							</div>
+							<div class="form-group row">
+								<label for="content" class="col-form-label text-right col-2">內容:</label>
+								<textarea id="content" class="col-9 form-control" rows="5" v-model.trim="content"></textarea>
+							</div>
+							<div class="form-group row">
+								<label for="hot" class="col-form-label text-right col-2">熱門:</label>
+								<div class="custom-control custom-switch">
+									<input type="checkbox" name="hot" id="hot" value="" class="custom-control-input" v-model="hot" />
+									<label for="hot" class="custom-control-label"></label>
+								</div>
+							</div>
+							<div class="form-group row">
+								<button type="button" class="btn btn-primary offset-2" @click="add">提交</button>
+							</div>
+						</form>
+
+					</div>
+					<div class="card-footer bg-white">
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">
+								<h3>文章列表</h3>
+							</li>
+							<!-- <li class="list-group-item bg-danger text-white" v-for="(article,index) in articles">[{{article.title}}] [{{article.category}}] {{article.content.substring(0,20)}}</li> -->
+							<!-- 切割字串只取20個字 -->
+							<li class="list-group-item" :class="{'bg-danger':article.hot,'text-white':article.hot}" v-for="(article,index) in articles"><span v-show="article.hot">【熱門】</span> 【{{article.category}}】 {{article.content.substring(0,20)}}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					 articles: [{
+							title: "標題1",
+							category: "種類1",
+							content: "內容1",
+							hot: false
+						},
+						{
+							title: "標題2",
+							category: "種類3",
+							content: "內容1",
+							hot: true
+						},
+					],
+					title:"",
+					category:"默認",
+					content:"",
+					hot:true
+				},
+				methods:{
+					add(){
+						let article = {title:this.title,category:this.category,content:this.content,hot:this.hot}
+						this.articles.push(article)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
