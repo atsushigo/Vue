@@ -49,7 +49,8 @@
 				this.$axios.post("http://localhost:8081/login",this.ruleForm).then(res=>{
 					console.log("請求成功",res)
 					const jwt = res.headers['authorization']
-					
+					const userInfo = res.data.data
+					console.log(userInfo)
 				})
 	          } else {
 	            console.log('error submit!!');
