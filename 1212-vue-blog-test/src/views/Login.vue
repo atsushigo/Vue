@@ -48,7 +48,7 @@
 	            alert('submit!');
 				//防止axios指向和vue指向混淆 要用vuex的this
 				const _this = this
-				this.$axios.post("http://localhost:8081/login",this.ruleForm).then(res=>{
+				this.$axios.post("/login",this.ruleForm).then(res=>{
 					console.log("請求成功",res)
 					const jwt = res.headers['authorization']
 					const userInfo = res.data.data
