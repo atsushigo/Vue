@@ -9,6 +9,10 @@
 </template>
 
 <style>
+#app{
+	max-width:960px;
+	margin:0 auto;
+}
 .logo {
 	height: 60%;
 	margin-top: 0.4125rem;
