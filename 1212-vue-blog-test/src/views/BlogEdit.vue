@@ -2,7 +2,7 @@
   <div>
     <Header />
     <div class="m-content">
-
+      <!-- form表單 https://element.eleme.io/#/zh-CN/component/form#biao-dan-yan-zheng -->
       <el-form
         :model="ruleForm"
         :rules="rules"
@@ -19,7 +19,7 @@
         </el-form-item>
 
         <el-form-item label="内容" prop="content">
-			<!-- 引入markdown編輯器 -->
+          <!-- 引入markdown編輯器 -->
           <mavon-editor v-model="ruleForm.content"></mavon-editor>
         </el-form-item>
 
@@ -30,7 +30,6 @@
           <el-button @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
       </el-form>
-
     </div>
   </div>
 </template>
@@ -70,6 +69,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           const _this = this;
+          //發出編輯頁面post 攜帶token認證在headers
           this.$axios
             .post("/blog/edit", this.ruleForm, {
               headers: {
@@ -78,8 +78,10 @@ export default {
             })
             .then((res) => {
               console.log(res);
+              //消息提示框  https://element.eleme.io/#/zh-CN/component/message-box#xiao-xi-ti-shi
               _this.$alert("操作成功", "提示", {
                 confirmButtonText: "確定",
+                //用戶按下確定按鈕後把它轉向到部落格列表頁面  /blogs
                 callback: (action) => {
                   _this.$router.push("/blogs");
                 },
@@ -96,6 +98,12 @@ export default {
     },
   },
   created() {
+    //編輯頁面邏輯是：先用url上的blogId和後端拿這筆部落格頁面資料，有需要編輯在用methods發出post回寫資料給後端
+    /* {
+    path: '/blog/:blogId/edit',
+    name: 'BlogEdit',
+    component: BlogEdit
+  },   */
     const blogId = this.$route.params.blogId;
     console.log(blogId);
     const _this = this;
@@ -113,7 +121,7 @@ export default {
 </script>
 
 <style scoped>
-.m-content{
-	text-align: center;
+.m-content {
+  text-align: center;
 }
 </style>
