@@ -5,12 +5,15 @@
       <div>{{ user.username }}</div>
     </div>
 
+	<!-- 沒有用戶訊息時顯示登入按鍵 有時則顯示退出 -->
     <div class="maction">
-      <span><el-link href="/blogs" type="primary">主頁</el-link></span>
+      <span><el-link href="/blogs" type="info">主頁</el-link></span>
       <el-divider direction="vertical"></el-divider>
       <span><el-link href="/blog/add" type="success">發表文章</el-link></span>
+	  <el-divider direction="vertical"></el-divider>
+      <span v-show="!hasLogin"><el-link href="/login" type="primary">登入</el-link></span>
       <el-divider direction="vertical"></el-divider>
-      <span><el-link @click="logout()" type="danger">退出</el-link></span>
+      <span v-show="hasLogin"><el-link @click="logout()" type="danger">退出</el-link></span>
     </div>
   </div>
 </template>
@@ -25,6 +28,7 @@ export default {
         avatar:
           "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
       },
+	  hasLogin:false
     };
   },
   methods: {
@@ -51,6 +55,8 @@ export default {
     if (this.$store.getters.getUser) {
       this.user.username = this.$store.getters.getUser.username;
       this.user.avatar = this.$store.getters.getUser.avatar;
+
+	  this.hasLogin = true
     }
   },
 };
