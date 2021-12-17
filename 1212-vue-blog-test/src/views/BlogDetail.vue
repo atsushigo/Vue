@@ -3,7 +3,7 @@
     <Header />
     <div class="m-blog">
       <h2>{{ blog.title }}</h2>
-      <el-link icon="el-icon-edit">
+      <el-link icon="el-icon-edit" v-show="ownBlog">
         <router-link :to="{ name: 'BlogAdd', params: { blogId: blog.id } }">
           編輯
         </router-link>
@@ -29,6 +29,7 @@ export default {
         title: "預設title",
         content: "預設內容",
       },
+      ownBlog: false,
     };
   },
   methods: {},
@@ -47,6 +48,9 @@ export default {
       var result = md.render(blog.content);
 
       _this.blog.content = result;
+
+      /* _this.ownBlog?(blog.userId == _this.$store.getters.getUser.id):false */
+      _this.ownBlog = blog.userId === _this.$store.getters.getUser.id;
     });
   },
 };
