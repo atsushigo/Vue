@@ -2,7 +2,7 @@
 	<div id="app">
 		<el-container>
 			<el-header><img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Blogger_logo.svg/1280px-Blogger_logo.svg.png" /></el-header>
-			<el-main>Main</el-main>
+			<!-- <el-main>Main</el-main> -->
 		</el-container>
 		<router-view />
 	</div>
