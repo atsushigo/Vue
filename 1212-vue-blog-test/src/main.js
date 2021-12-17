@@ -9,6 +9,8 @@ import "./axios"
 import mavonEditor from "mavon-editor"
 
 import "mavon-editor/dist/css/index.css"
+//權限路由
+import "./permission"
 
 Vue.config.productionTip = false
 //全局設置axios
