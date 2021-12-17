@@ -32,7 +32,13 @@ export default {
       const blog = res.data.data;
       _this.blog.id = blog.id;
       _this.blog.title = blog.title;
-      _this.blog.content = blog.content;
+
+      //處理md格式顯示
+      var MarkdownIt = require("markdown-it");
+      var md = new MarkdownIt();
+      var result = md.render(blog.content);
+
+      _this.blog.content = result;
     });
   },
 };
