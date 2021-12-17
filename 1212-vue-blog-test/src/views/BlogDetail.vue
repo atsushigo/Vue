@@ -3,14 +3,22 @@
     <Header />
     <div class="m-blog">
       <h2>{{ blog.title }}</h2>
+      <el-link icon="el-icon-edit">
+        <router-link :to="{ name: 'BlogAdd', params: { blogId: blog.id } }">
+          編輯
+        </router-link>
+      </el-link>
       <el-divider></el-divider>
-      <div v-html="blog.content"></div>
+      <div class="markdown-body" v-html="blog.content"></div>
     </div>
   </div>
 </template>
 
 <script>
 import Header from "../components/Header";
+//這插件import包即可
+/* import "github-markdown-css/github-markdown.css" */
+import "github-markdown-css";
 export default {
   components: { Header },
   data() {
@@ -52,5 +60,9 @@ export default {
   margin: 0 auto;
   width: 90%;
   min-height: 700px;
+  padding: 20px 10px;
+}
+
+.markdown-body {
 }
 </style>
