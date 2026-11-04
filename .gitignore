@@ -1,0 +1,17 @@
+node_modules
+.DS_Store
+dist
+
+# 環境變數/密鑰，不應該進版控
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

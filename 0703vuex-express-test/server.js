@@ -3,6 +3,9 @@ const app = express()
 const cors = require("cors")
 const jwt = require("jsonwebtoken")
 
+// JWT密鑰改從環境變數讀取，避免硬編碼進原始碼
+const JWT_SECRET = process.env.JWT_SECRET || "dev-only-placeholder-secret"
+
 app.use(express.urlencoded({
 	extended: false
 }))
@@ -16,7 +19,7 @@ app.get("/hi",(req,res)=>{
 	const {authorization} = req.headers
 	const[, token] = authorization.split(" ")
 	// console.log(token)
-	const tokenVerify = jwt.verify(token,"我是加密字串")
+	const tokenVerify = jwt.verify(token,JWT_SECRET)
 	if(tokenVerify){
 		res.json({
 			message:"帶token的HI OK"
@@ -29,19 +32,18 @@ app.get("/hi",(req,res)=>{
 	
 })
 app.post("/login",(req,res)=>{
-	const USERNAME = "sam"
-	const PASSWORD = "12345"
-	
+	const USERNAME = process.env.DEMO_USERNAME || "sam"
+	const PASSWORD = process.env.DEMO_PASSWORD || "dev-only-placeholder-password"
+
 	const {username,password} = req.body.user
-	
+
 	if(username === USERNAME && password === PASSWORD){
 		const user = {
 			id:1,
-			username:"sam",
-			password:"12345",
+			username,
 		}
-		const token = jwt.sign(user,"我是加密字串")
-		
+		const token = jwt.sign(user,JWT_SECRET)
+
 		res.json({
 			message:"login OK",
 			user,
